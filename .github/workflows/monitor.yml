@@ -19,7 +19,7 @@ jobs:
       - name: Check Health Endpoint
         # ЗАМЕНИТЕ URL на прямую ссылку вашего спейса! (строка склеена в одну)
         run: |
-          curl --fail https://<ВАШ_ЛОГИН>-<ИМЯ_СПЕЙСА>.hf.space/health
+          curl --fail https://bazunova1-iris-api-bazunova.hf.space/health
 
       - name: Create Issue on Failure
         # Этот шаг выполнится ТОЛЬКО если curl выдаст ошибку (сервер лежит)
