@@ -13,15 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # fetch-depth: 0 нужен, чтобы DVC мог сравнить текущую ветку с историей main
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12' # Поменяли на 3.12, чтобы NumPy 2.5.0 не крашил сборку!
+          python-version: '3.12'
           cache: 'pip'
+
+      # === ВОТ ЭТОТ ИСПРАВЛЯЮЩИЙ ШАГ ===
+      - name: Install system graphics dependencies for CML (canvas)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev libpixman-1-dev
 
       - name: Setup CML
         uses: iterative/setup-cml@v2
